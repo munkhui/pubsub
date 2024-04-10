@@ -26,11 +26,18 @@ client.connect(
   keepalive = 60,
 )
 
+# Number of cycles to perform
 num_cycles = int(input("heden udaa msg ywuulahwe: "))
+
 for _ in range(num_cycles):
+    # Ask user for the message to be published
     message = input("Enter the message to publish: ")
     topic = "9fmrvy5679/"
+
+    # Publish the message to the topic
     client.publish(topic, message)
-    client.loop(timeout=1.0)
-    time.sleep(1)  
-client.disconnect()  
+    
+    # Delay between cycles
+    time.sleep(1)  # Adjust the delay as needed
+
+client.loop_forever()

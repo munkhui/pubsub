@@ -1,4 +1,5 @@
 import paho.mqtt.client as mqtt
+import time
 
 def on_connect(mqtt_client, userdata, flags, rc, properties=None):
     if rc == 0:
@@ -25,11 +26,20 @@ client.connect(
   keepalive = 60,
 )
 
-# Ask user for the message to be published
-message = input("Enter the message to publish: ")
-topic = "9fmrvy5679/"
+# Number of cycles to perform
+num_cycles = int(input("heden udaa msg ywuulahwe:))
 
-# Publish the message to the topic
-client.publish(topic, message)
+for _ in range(num_cycles):
+    # Ask user for the message to be published
+    message = input("Enter the message to publish: ")
+    topic = "9fmrvy5679/"
 
-client.loop_forever()
+    # Publish the message to the topic
+    client.publish(topic, message)
+    
+    # Delay between cycles
+    time.sleep(2)  # Adjust the delay as needed
+
+client.loop_start()
+time.sleep(10)  # Run the loop for 10 seconds (or however long you need)
+client.loop_stop()

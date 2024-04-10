@@ -27,7 +27,7 @@ client.connect(
 )
 
 # Number of cycles to perform
-num_cycles = int(input("heden udaa msg ywuulahwe:))
+num_cycles = int(input("heden udaa msg ywuulahwe: "))
 
 for _ in range(num_cycles):
     # Ask user for the message to be published

@@ -11,7 +11,7 @@ def on_connect(mqtt_client, userdata, flags, rc, properties=None):
 def on_message(mqtt_client, userdata, msg):
     print(f"Received message on topic :{msg.topic} with payload:{str(msg.payload)}")
 
-def on_publish(mqtt_client, userdata, mid):
+def on_publish(mqtt_client, userdata, mid, qos, properties=None):
     print("Message published")
 
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
@@ -26,20 +26,11 @@ client.connect(
   keepalive = 60,
 )
 
-# Number of cycles to perform
 num_cycles = int(input("heden udaa msg ywuulahwe: "))
-
 for _ in range(num_cycles):
-    # Ask user for the message to be published
     message = input("Enter the message to publish: ")
     topic = "9fmrvy5679/"
-
-    # Publish the message to the topic
     client.publish(topic, message)
-    
-    # Delay between cycles
-    time.sleep(2)  # Adjust the delay as needed
-
-client.loop_start()
-time.sleep(10)  # Run the loop for 10 seconds (or however long you need)
-client.loop_stop()
+    client.loop(timeout=1.0)
+    time.sleep(1)  
+client.disconnect()  
